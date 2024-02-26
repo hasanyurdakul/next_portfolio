@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Lottie from "./lottie";
+import Lottie from "./Lottie";
 const Home = () => {
   return (
     <div className="font-mono px-8 py-28 md:pt-28  items-start h-screen ">

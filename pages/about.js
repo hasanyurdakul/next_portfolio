@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Skills from "../components/Skills";
 import Head from "next/head";
 
