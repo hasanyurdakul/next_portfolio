@@ -45,8 +45,6 @@ Event loop sürekli olarak hem callback queue'yu hem de call stack'i izler. Call
 
 Aşağıdaki resim JavaScript runtime'ını, Web API'yi, call stack'i ve event loop'u göstermektedir:
 
-![](../public/images/posts/concurrency1.png)
-
 Event loop sürekli olarak callback queue'dan fonksiyonları alır ve call stack boşaldığında bunları call stack'e iter. Call stack'teki görev tamamlandıktan sonra, event loop callback queue'daki bir sonraki öğeyi alır ve işlemeye başlamak için call stack'e gönderir. Bu, olay döngüsünün nasıl çalıştığının temel prensibidir.
 
 ## Callback
