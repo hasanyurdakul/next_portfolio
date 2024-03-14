@@ -4,29 +4,43 @@ date: "Mar 15, 2024"
 cover_image: ""
 ---
 
-Merhaba arkadaşlar. Bugün sizlere sıralama(sorting) algoritmalarından biri olan Bubble Sort algoritmasından bahsetmek istiyorum.
 
-## Bubble Sort Nedir?
-Bubble sort, en basit sıralama algoritmalarından biridir. Karşılaştırma temelli olan bu algoritmada, listedeki her bir eleman yanındaki eleman ile karşılaştırılır. Eğer ilk elemanın değeri, ikinci elemanın değerinden büyükse, iki eleman yer değiştirir. Daha sonra ikinci ve üçüncü elemanların değerleri karşılaştırılır. İkinci elemanın değeri üçüncü elemanın değerinden büyükse bu iki eleman yer değiştirir ve bu işlem, tüm liste sıralanana kadar bu şekilde devam eder.
-Bubble Sort’un Time Complexity’si:
-Worst Case: O(n²) - Quadratic Time Complexity
-Average Case O(n²) - Quadratic Time Complexity
-Best Case O(n) - Linear Time Complexity [Tüm array sıralı ise sadece 1 kez iterasyon gerçekleştirilir]
+## Bubble Sort Algoritması Nedir?
 
-HackerRank — Bubble Sort Algorithm
-Bubble Sort Algoritması Nasıl Çalışır?
-Örneğin yukarıda belirtilen listeyi ele alalım. [3,10,5,12,9,20]. Bubble sort kullanarak bu listeyi sıralayacak olursak eğer; Karşılaştırmaya öncelikle 3 ve 10 değerlerinin karşılaştırılması ile başlanır. 3, 10'dan küçük olduğu için yer değiştirmezler. Daha sonrasında 10 ve 5 değerleri karşılaştırılır. 10 5'ten büyük olduğu için yer değiştirirler ve iterasyon işlemleri bu şekilde liste elemanları sıralanana kadar devam eder.
+Bu algoritma yukarıda da bahsedildiği gibi basit bir yapıya sahiptir ve karşılaştırma temelli bir algoritmadır. Çalışma prensibi; listedeki her bir elemanın yanındaki eleman ile karşılaştırılması ve ilk elemanın değeri, ikinci elemanın değerinden büyükse iki elemanın yer değiştirmesi şeklinde olmaktadır. Daha sonra ikinci ve üçüncü elemanların değerleri karşılaştırılır. İkinci elemanın değeri üçüncü elemanın değerinden büyükse bu iki eleman da yer değiştirir. Tüm dizi tamamen bitene dek bu işlem bu şekilde sürecektir. Tüm elemanlar teker teker hemen yanındaki elemanlar ile karşılaştırıldığından çok çalışan bir algoritma olduğu görüşü söz konusudur.
 
-```
-Iterasyon : [3,5,10,9,12,20] → [3,5,10,9,12,20] → [3,5,10,9,12,20] → [3,5,9,10,12,20] → [3,5,9,10,12,20]
-Iterasyon : [3,5,9,10,12,20] → [3,5,9,10,12,20] → [3,5,9,10,12,20] → [3,5,9,10,12,20] → [3,5,9,10,12,20] → [3,5,9,10,12,20]
-```
-Bu örneğimizde, 2 iterasyon gerçekleştirdikten sonra array elemanları sıralanmış olur.
+Bu algoritmayı insertion sort algoritmasından bariz şekilde ayıran özelliği küçük olarak tespit edilen elemanın araya giremiyor oluşudur. Yani örneklemek gerekirse üçüncü eleman 10 olsun ve ikinci eleman 15 olsun. Bu algoritma çalışırken 10 ile 15 kendi aralarında yer değiştirmektedirler. Küçük olan değer birince elemandan daha küçükse bile yanındakini ezip birinci elemana gidemeyecektir.
 
-Bubble sort algoritmasının örnek JavaScript kodu:
+Dizideki tüm elemanlar birbirleri ile yer değiştirmiş olsa dahi dizi elemanları tamamen sıralanmamış olabilirler. Bu yüzden baştan yeni bir iterasyona başlanır ve aynı sıralama tekrar yapılır. Bu şekilde sonunda dizinin tamamı sıralanmış olur. Algoritmanın kaç iterasyonda kendisini bitirdiği de önemli bir ölçü olacaktır.
 
+### **Zaman Karmaşıklığı:**
 
-Bubble Sort algoritmasının Halk oyunları canlandırmasını da inceleyebilirsiniz :)
+Tüm elemanları tek tek ve birden fazla kez gezdiği için en kötü durum (Worst Case) O(N^2), En iyi durum (Best Case) ise O(n) olur.
 
+#### **Örnek:**
 
-Bir mini yazının daha sonuna geldik. Eksik veya yanlış olduğunu düşündüğünüz kısımları bana iletirseniz çok sevinirim.
+20,15,5,1,9,13 sayı dizisini kabarcık sıralama algoritması ile sıralayalım.
+
+1.  ilk iki eleman birbirleri ile kıyas edilir. 15 < 20 olduğu için yer değiştirir. 15,20,5,1,9,13 olur.
+2.  ikinci ve üçüncü elemanlar birbirleri ile kıyas edilir. 5 < 20 olduğu için yer değiştirir. 15,5,20,1,9,13 olur. Dikkat: Insertion Sort olsaydı 5 değeri en başa (araya ekleme) girerdi.
+3.  üçüncü ve dördüncü elemanlar kıyas edilir. 1 < 20 olduğu için yer değiştirir ve 15,5,1,20,9,13 olur.
+4.  dördüncü ve beşinci elemanlar kıyas edilir. 20 > 9 olduğu için yer değiştirilir. 15,5,1,9,20,13 olur.
+5.  beşinci ve altıncı elemanlar kıyas edilir. 13 < 20 olduğu için yer değiştirilir. 15,5,1,9,13,20 olarak son halini alır.
+
+Yukarıdaki beş adımda birinci iterasyon tamamlanmıştır ancak sayılar halen sıralı değildir. Bu yüzden ikinci iterasyona başlanılır ve aynı işlemler aşağıdaki gibi tekrar edilir.
+
+1.  ilk iki elemana bakılır 15 > 5 olduğu için yer değiştirilir. 5,15,1,9,13,20 olur.
+2.  ikinci ve üçüncü elemana bakılır. 15 > 1 olduğu için yer değiştirilir. 5,1,15,9,13,20 olur.
+3.  üçüncü ve dördüncü elemana bakılır. 15 > 9 olduğu için yer değiştirilir. 5,1,9,15,13,20 olur.
+4.  dördüncü ve beşinci elemana bakılır. 15 > 13 olduğu için yer değiştirilir. 5,1,9,13,15,20 olur.
+5.  beşinci ve altıncı elemana bakılır. 15 < 20 olduğu için bir şey yapılmaz. 5,1,9,13,15,20 olarak kalır.
+
+Yukarıdaki beş adımda ise ikinci iterasyon tamamlanmış olur ancak dizi halen sıralı değildir. Bu yüzden üçüncü iterasyona başlanılır ve aşağıdaki işlemler yapılır.
+
+1.  ilk iki elemana bakılır. 5 > 1 olduğu için yer değiştirilir. 1,5,9,13,15,20 olur.
+2.  ikinci ve üçüncü elemanlara bakılır sıralı olduğu için bir şey yapılmaz.
+3.  üçüncü ve dördüncü elemanlara bakılır sıralı olduğu için bir şey yapılmaz.
+4.  dördüncü ve beşinci elemanlara bakılır sıralı oluğu için bir şey yapılmaz.
+5.  beşinci ve altıncı elemanlara bakılır sıralı olduğu için bir şey yapılmaz.
+
+Böylelikle üç iterasyonda veriler sıralanmış olur
